@@ -46,7 +46,9 @@ public class Node {
     public Map<actions,Boolean> getValidActions(){ return validActions;}
     public int getHash(){return this.hash;}
 
-    /* Initialize the valid actions of current state*/
+    /* Initialize the valid actions of current state
+    *  ***THIS FUNCTION MUST BE CALLED WHEN CREATE NEW NODES
+    * */
     public void setActions (){
         zeroPos=findIndexOfZero();
         //In the middle
@@ -60,33 +62,49 @@ public class Node {
             if(zeroPos==3||zeroPos==5){
                  this.validActions.put(actions.DOWN,true);
                  this.validActions.put(actions.UP,true);
-                 if(zeroPos==3)
-                     this.validActions.put(actions.RIGHT,true);
-                 else
-                     this.validActions.put(actions.LEFT,true);
+                 if(zeroPos==3) {
+                     this.validActions.put(actions.RIGHT, true);
+                     this.validActions.put(actions.LEFT, false);
+                 }
+                else {
+                     this.validActions.put(actions.RIGHT, false);
+                     this.validActions.put(actions.LEFT, true);
+                 }
             }else{
                 // In the middle column
                  this.validActions.put(actions.LEFT,true);
                  this.validActions.put(actions.RIGHT,true);
-                 if(zeroPos==1)
-                     this.validActions.put(actions.DOWN,true);
-                 else
-                     this.validActions.put(actions.UP,true);
+                 if(zeroPos==1) {
+                     this.validActions.put(actions.DOWN, true);
+                     this.validActions.put(actions.UP, false);
+                 }
+                 else {
+                     this.validActions.put(actions.UP, true);
+                     this.validActions.put(actions.DOWN, false);
+                 }
             }
         }else{
                 if(zeroPos==0||zeroPos==2){
                     this.validActions.put(actions.DOWN,true);
                     if(zeroPos==0){
                         this.validActions.put(actions.RIGHT,true);
+                        this.validActions.put(actions.LEFT,false);
+                        this.validActions.put(actions.UP,false);
                     }else{
                         this.validActions.put(actions.LEFT,true);
+                        this.validActions.put(actions.RIGHT,false);
+                        this.validActions.put(actions.UP,false);
                     }
                 }else{
                     this.validActions.put(actions.UP,true);
                     if(zeroPos==6){
                         this.validActions.put(actions.RIGHT,true);
+                        this.validActions.put(actions.LEFT,false);
+                        this.validActions.put(actions.DOWN,false);
                     }else{
                         this.validActions.put(actions.LEFT,true);
+                        this.validActions.put(actions.DOWN,false);
+                        this.validActions.put(actions.RIGHT,false);
                     }
                 }
         }
