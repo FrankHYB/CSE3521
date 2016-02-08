@@ -120,13 +120,15 @@ public class IDDFS {
         //explored=new HashSet<List<Integer>>();
         Node root=new Node(Arrays.asList(5,0,4,2,1,3,6,7,8),null,1,0,0);
         root.setActions();
+
+        //IDDFS
         boolean target=false;
-        for(int i=1;i<40;i++){
+        for(int i=1;i<21;i++){
             target=DLS(root,i);
             if(target)
                 break;
             /*make sure steps is clear*/
-            steps.clear();
+              steps.clear();
             result.clear();
             //explored.clear();
         }
@@ -134,6 +136,8 @@ public class IDDFS {
             print();
         else
             System.out.print("failed");
+
+
 
     }
 }
