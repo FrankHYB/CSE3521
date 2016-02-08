@@ -52,16 +52,15 @@ public class IDDFS {
             return null;
         }
     }
-    private static boolean[] DLS(Node node, int limit){
+    private static boolean DLS(Node node, int limit){
         /* the cut_goal[0] mark cutoff, cut_goal[1] mark goal*/
-        boolean[] cut_goal={false,false};
+        boolean goal=false;
         if(check(node,goalNode)){
-            cut_goal[1]=true;
-            return cut_goal;
+            goal=true;
+            return goal;
         }
         else if(limit==0){
-            cut_goal[0]=true;
-            return cut_goal;
+            return goal;
         }
         else{
             //boolean cutoff_occured=false;
@@ -69,22 +68,21 @@ public class IDDFS {
                 Node child=getChildNode(node,act);
 
                 if(child==null) continue;       //current action is invalid
-                //if(explored.contains(child.getState())) continue;
 
                 steps.add(act);
                 result.add(node.getState());
-                //explored.add(node.getState());
-                cut_goal=DLS(child,limit-1);
-                if(cut_goal[1]) return cut_goal;
-                else if(cut_goal[0]){
-                    //cutoff_occured=true;        //to mark whether cut_off occured or not
-                }
+
+                goal=DLS(child,limit-1);
+                if(goal) return goal;
+
                 steps.remove(steps.size()-1);
                 result.remove(result.size()-1);
             }
-            return cut_goal;
+            return goal;
         }
     }
+
+
 
     /*print out the results*/
     private static void print(){
@@ -122,17 +120,17 @@ public class IDDFS {
         //explored=new HashSet<List<Integer>>();
         Node root=new Node(Arrays.asList(5,0,4,2,1,3,6,7,8),null,1,0,0);
         root.setActions();
-        boolean[] goal={false,false};
+        boolean target=false;
         for(int i=1;i<40;i++){
-            goal=DLS(root,i);
-            if(goal[1])
+            target=DLS(root,i);
+            if(target)
                 break;
             /*make sure steps is clear*/
             steps.clear();
             result.clear();
             //explored.clear();
         }
-        if(goal[1])
+        if(target)
             print();
         else
             System.out.print("failed");
