@@ -82,7 +82,9 @@ public class IDDFS {
         }
     }
 
+    private static void aStar(){
 
+    }
 
     /*print out the results*/
     private static void print(){
@@ -128,7 +130,7 @@ public class IDDFS {
             if(target)
                 break;
             /*make sure steps is clear*/
-              steps.clear();
+             steps.clear();
             result.clear();
             //explored.clear();
         }
@@ -136,6 +138,7 @@ public class IDDFS {
             print();
         else
             System.out.print("failed");
+
 
 
 
