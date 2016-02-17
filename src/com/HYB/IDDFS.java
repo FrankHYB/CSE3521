@@ -82,9 +82,6 @@ public class IDDFS {
         }
     }
 
-    private static void aStar(){
-
-    }
 
     /*print out the results*/
     private static void print(){
