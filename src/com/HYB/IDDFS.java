@@ -4,8 +4,6 @@ import com.HYB.Node.actions;
 public class IDDFS {
     private static List<Integer> goal=new ArrayList<Integer>();
     private static Node goalNode;
-    //private static Queue<Node> explored;
-    //private static Queue<Node> frontier;
     private static List<Node.actions> steps;
     private static List<List<Integer>> result;
     private static Set<actions> acti;
@@ -116,7 +114,6 @@ public class IDDFS {
         steps=new ArrayList<actions>();
         result=new ArrayList<List<Integer>>();
         acti=EnumSet.allOf(Node.actions.class);
-        //explored=new HashSet<List<Integer>>();
         Node root=new Node(Arrays.asList(5,0,4,2,1,3,6,7,8),null,1,0,0);
         root.setActions();
 
@@ -129,7 +126,6 @@ public class IDDFS {
             /*make sure steps is clear*/
              steps.clear();
             result.clear();
-            //explored.clear();
         }
         if(target)
             print();
